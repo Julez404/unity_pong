@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -69,7 +70,11 @@ public class BallMovement : MonoBehaviour
 
     void resetBall()
     {
-        Vector2 temp = new Vector2(0,0);
+        Vector2 temp = new Vector2(0, 0);
+        Vector2 currentDir = GetComponent<Rigidbody2D>().velocity;
+        System.Random random = new System.Random();
+        currentDir.y= Convert.ToSingle(random.NextDouble())*10f;
+        GetComponent<Rigidbody2D>().velocity = currentDir;
         gameObject.transform.position = temp;
     }
 }
