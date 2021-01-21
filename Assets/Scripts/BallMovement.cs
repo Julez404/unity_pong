@@ -1,10 +1,15 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class BallMovement : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip audioEffectMiss, audioEffectHitPlayer, audioEffectHitWall;
+    //public AudioClip audioEffectMiss, audioEffectHitPlayer, audioEffectHitWall;
+
     public float InitialSpeed = 10f;
     int score_player_left = 0;
     int score_player_right = 0;
@@ -32,9 +37,11 @@ public class BallMovement : MonoBehaviour
             Vector2 currentDir = GetComponent<Rigidbody2D>().velocity;
             currentDir.y = y * 10;
             GetComponent<Rigidbody2D>().velocity = currentDir;
+            audioSource.PlayOneShot(audioEffectHitPlayer, 1f);
         }
-        if (col.gameObject.tag == "Goal")
+        else if (col.gameObject.tag == "Goal")
         {
+            audioSource.PlayOneShot(audioEffectMiss, 1f);
             if (GetComponent<Rigidbody2D>().velocity.x < 0)
             {
                 print("Goal Player left");
@@ -49,6 +56,10 @@ public class BallMovement : MonoBehaviour
             scoreDisplayPlayer1.text = score_player_left.ToString();
             scoreDisplayPlayer2.text = score_player_right.ToString();
         }
+        else
+        {
+            audioSource.PlayOneShot(audioEffectHitWall, 1f);
+    }
     }
 
     float hitObject(Vector2 ballPos, Vector2 playerPos, float playerSize)
