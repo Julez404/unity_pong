@@ -24,12 +24,6 @@ public class BallMovement : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = new Vector2(1, 0) * InitialSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
