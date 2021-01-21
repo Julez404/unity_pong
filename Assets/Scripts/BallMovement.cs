@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -54,7 +54,7 @@ public class BallMovement : MonoBehaviour
         else
         {
             audioSource.PlayOneShot(audioEffectHitWall, 1f);
-    }
+        }
     }
 
     float hitObject(Vector2 ballPos, Vector2 playerPos, float playerSize)
@@ -67,7 +67,7 @@ public class BallMovement : MonoBehaviour
         Vector2 temp = new Vector2(0, 0);
         Vector2 currentDir = GetComponent<Rigidbody2D>().velocity;
         System.Random random = new System.Random();
-        currentDir.y= Convert.ToSingle(random.NextDouble())*10f;
+        currentDir.y = Convert.ToSingle(random.NextDouble()) * 10f;
         GetComponent<Rigidbody2D>().velocity = currentDir;
         gameObject.transform.position = temp;
     }
